@@ -1,20 +1,29 @@
-// importing io module for this program, std is the library
-use std::io;
 use rand::Rng;
+use std::cmp::Ordering;
+use std::io;
 
 fn main() {
-    println!("Let's play a game!");
+    println!("Lets plan!");
 
-    println!("Please choose a number");
+    let secret_number = rand::thread_rng().gen_range(1..=100);
 
-    // initializing a variable mut() mutable of type String
-    let mut guess = String::new(); // creating empty instance of string
+    println!("Please choose a number! \n ->");
 
-    
-    io::stdin().read_line(&mut guess);
+    let mut guess = String::new();
 
-    println!("You have choosen a number {guess}");
+    io::stdin()
+        .read_line(&mut guess)
+        .expect("Failed to read line");
 
+    // creating a new variable with u32 type that means signed integer
+    let guess: u32 = guess.trim().parse().expect("Please type a number!");
 
-    
+    println!("You have choosen {guess}, but secret number is {secret_number}");
+
+    // comparison
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("Number is small!"),
+        Ordering::Greater => println!("Number is bigger"),
+        Ordering::Equal => println!("You have guessed the right number !"),
+    }
 }

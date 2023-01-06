@@ -1,2 +1,6 @@
 # By default variables are immutable (which means they are not updatable), so we need to declare variable with mut keyword
     e.g -> let mut name = "Vishal";
+
+# While we are converting a string to number, we need to do two things:
+    - we need to trim the string first in order to remove space and new line
+    - We need to parse the string to number
